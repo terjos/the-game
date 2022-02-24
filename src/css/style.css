@@ -1,0 +1,244 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap");
+@import "reset.css";
+
+:root {
+  --margin-contour: 15px;
+  --primary: 237, 78, 66;
+  --secondary: 246, 246, 246;
+  --secondary-light: 255, 255, 255;
+  --secondary-dark: 55, 55, 55;
+}
+
+html {
+  box-sizing: border-box;
+  font-family: Lato, sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+  transition-duration: 0.5s;
+  transition-property: font-size;
+}
+
+body {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(165, 119, 72);
+  background: linear-gradient(
+    45deg,
+    rgba(183, 124, 95, 1) 0%,
+    rgba(125, 80, 57, 1) 20%,
+    rgba(183, 124, 95, 1) 40%,
+    rgba(125, 80, 57, 1) 60%,
+    rgba(183, 124, 95, 1) 80%,
+    rgba(183, 124, 95, 1) 100%
+  );
+}
+
+.players {
+  position: absolute;
+  top: var(--margin-contour);
+  right: var(--margin-contour);
+  bottom: var(--margin-contour);
+  left: var(--margin-contour);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-transform: uppercase;
+  background: rgb(158, 158, 158);
+  background: linear-gradient(
+    90deg,
+    rgba(var(--secondary), 1) 0%,
+    rgba(var(--secondary), 1) 50%,
+    rgba(var(--secondary-light), 1) 50%,
+    rgba(var(--secondary-light), 1) 100%
+  );
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.player > .title {
+  position: relative;
+  margin-top: 70px;
+  font-size: 2.2rem;
+  font-weight: 300;
+}
+
+.player > .title-active::after {
+  position: absolute;
+  width: 0.6rem;
+  height: 0.6rem;
+  content: " ";
+  background-color: rgb(var(--primary));
+  border-radius: 50%;
+  transform: translate(0.6rem, 0.7rem);
+}
+
+.player > .score {
+  margin-top: 40px;
+  font-size: 4rem;
+  font-weight: 100;
+  color: rgb(var(--primary));
+}
+
+.player > .round {
+  padding: 10px 20px;
+  margin-top: 100px;
+  font-size: 0.7rem;
+  font-weight: 300;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  background-color: rgb(var(--primary));
+}
+
+.player > .round > .round-score {
+  margin-top: 13px;
+  font-size: 1.6rem;
+  color: rgb(var(--secondary-light));
+}
+
+.nav-game {
+  position: absolute;
+  top: var(--margin-contour);
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 180px;
+  height: calc(100vh - var(--margin-contour) * 2);
+  font-size: 3rem;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.nav-game > .btn {
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  transition-duration: 0.5s;
+  transition-property: color;
+}
+
+.nav-game > .btn:hover {
+  color: rgba(var(--secondary-dark), 0.7);
+}
+
+.nav-game > .btn:disabled {
+  color: rgba(var(--secondary-dark), 0.7);
+}
+
+.nav-game > .btn > svg {
+  height: 1.8rem;
+  margin-right: 15px;
+  fill: rgb(var(--primary));
+  stroke: rgb(var(--primary));
+  transition-duration: 0.5s;
+  transition-property: fill, stroke;
+}
+
+.nav-game > .btn:hover > svg {
+  fill: rgba(var(--primary), 0.7);
+  stroke: rgba(var(--primary), 0.7);
+}
+
+.nav-game .btn-new {
+  margin-top: 22px;
+}
+
+.nav-game .dice {
+  width: 50px;
+  height: 50px;
+  margin-top: 85px;
+  box-shadow: -3px 3px 20px 2px rgba(var(--secondary-dark), 0.4);
+  transition-duration: 0.5s;
+  transition-property: width, height;
+}
+
+.nav-game .dice img {
+  width: 100%;
+  height: 100%;
+}
+
+.nav-game .btn-rolldice {
+  margin-top: 50px;
+}
+
+.nav-game .btn-rolldice svg {
+  fill: rgb(var(--primary));
+  stroke: rgb(var(--primary));
+}
+
+.nav-game .btn-hold {
+  margin-top: 115px;
+}
+
+@media (min-width: 575px) {
+  html {
+    font-size: 14px;
+  }
+
+  .player > .title {
+    margin-top: 85px;
+  }
+
+  .player > .score {
+    margin-top: 22px;
+  }
+
+  .player > .round {
+    margin-top: 105px;
+  }
+
+  .nav-game .dice {
+    width: 65px;
+    height: 65px;
+  }
+
+  .nav-game .btn-rolldice {
+    margin-top: 75px;
+  }
+
+  .nav-game .btn-hold {
+    margin-top: 45px;
+  }
+}
+
+@media (min-width: 767px) {
+  html {
+    font-size: 16px;
+  }
+
+  .player > .title-active::after {
+    position: absolute;
+    width: 0.8rem;
+    height: 0.8rem;
+    transform: translate(1rem, 0.7rem);
+  }
+
+  .nav-game {
+    width: 350px;
+  }
+
+  .nav-game .dice {
+    width: 85px;
+    height: 85px;
+  }
+}
+
+@media (min-width: 991px) {
+  html {
+    font-size: 20px;
+  }
+
+  .nav-game .dice {
+    width: 100px;
+    height: 100px;
+  }
+}
