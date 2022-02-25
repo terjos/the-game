@@ -66,7 +66,7 @@ body {
   font-weight: 300;
 }
 
-.player > .title-active::after {
+.player-active > .title::after {
   position: absolute;
   width: 0.6rem;
   height: 0.6rem;
@@ -83,9 +83,26 @@ body {
   color: rgb(var(--primary));
 }
 
+.player > .status {
+  height: 1rem;
+  margin-top: 1rem;
+  font-size: 2rem;
+  font-weight: 300;
+  color: rgb(var(--primary));
+  opacity: 0;
+  transition-duration: 0.5s;
+  transition-property: transform, opacity;
+  transform: scale(0.1);
+}
+
+.player-end-game > .status {
+  opacity: 1;
+  transform: scale(1);
+}
+
 .player > .round {
   padding: 10px 20px;
-  margin-top: 100px;
+  margin-top: 90px;
   font-size: 0.7rem;
   font-weight: 300;
   text-align: center;
@@ -117,21 +134,23 @@ body {
 .nav-game > .btn {
   display: flex;
   align-items: center;
+  padding: 5px 10px;
   font-size: 1.4rem;
   text-transform: uppercase;
   cursor: pointer;
   background: transparent;
   border: none;
   transition-duration: 0.5s;
-  transition-property: color;
+  transition-property: color, background-color;
 }
 
-.nav-game > .btn:hover {
-  color: rgba(var(--secondary-dark), 0.7);
+.nav-game > .btn-active {
+  background-color: rgba(var(--primary), 0.3);
 }
 
 .nav-game > .btn:disabled {
   color: rgba(var(--secondary-dark), 0.7);
+  pointer-events: none;
 }
 
 .nav-game > .btn > svg {
@@ -146,6 +165,11 @@ body {
 .nav-game > .btn:hover > svg {
   fill: rgba(var(--primary), 0.7);
   stroke: rgba(var(--primary), 0.7);
+}
+
+.nav-game > .btn:disabled > svg {
+  fill: rgba(var(--secondary-dark), 0.7);
+  stroke: rgba(var(--secondary-dark), 0.7);
 }
 
 .nav-game .btn-new {
@@ -193,7 +217,7 @@ body {
   }
 
   .player > .round {
-    margin-top: 105px;
+    margin-top: 95px;
   }
 
   .nav-game .dice {
@@ -206,7 +230,7 @@ body {
   }
 
   .nav-game .btn-hold {
-    margin-top: 45px;
+    margin-top: 65px;
   }
 }
 
