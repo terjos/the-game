@@ -135,7 +135,8 @@ body {
   transform: translateX(-50%);
 }
 
-.nav-game > .btn {
+.nav-game > .btn,
+.nav-game > .btn:active {
   display: flex;
   align-items: center;
   padding: 5px 10px;
@@ -145,16 +146,16 @@ body {
   background: transparent;
   border: none;
   transition-duration: 0.5s;
-  transition-property: color, background-color;
+  transition-property: color;
 }
 
 .nav-game > .btn:hover {
-  color: rgba(var(--secondary-dark), 0.7);
+  color: rgba(var(--secondary-dark), 0.8);
 }
 
 .nav-game > .btn:disabled {
-  color: rgba(var(--secondary-dark), 0.7);
   pointer-events: none;
+  opacity: 0.5;
 }
 
 .nav-game > .btn > svg {

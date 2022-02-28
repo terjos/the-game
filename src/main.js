@@ -1,7 +1,7 @@
 import "./css/style.css";
 import Player from "./js/player";
 
-const WIN_SCORE = 100;
+const WIN_SCORE = 10;
 
 const btnNewGame = document.getElementById("btnNewGame");
 const btnRolldice = document.getElementById("btnRolldice");
@@ -44,6 +44,7 @@ async function handleBtnRolldice() {
     if (currentPlayer.score + currentPlayer.roundScore >= WIN_SCORE) {
       btnRolldice.disabled = true;
       btnHold.disabled = true;
+      btnNewGame.ac;
       currentPlayer.score = currentPlayer.roundScore;
       currentPlayer.win();
       opposingPlayer.lose();
