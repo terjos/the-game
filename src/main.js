@@ -10,8 +10,6 @@ const elDice = document.getElementById("dice");
 
 const firstPlayer = new Player("firstPlayer");
 const secondPlayer = new Player("secondPlayer");
-
-let hold = false;
 let currentPlayer = firstPlayer;
 let opposingPlayer = secondPlayer;
 
@@ -34,33 +32,29 @@ async function handleBtnRolldice() {
   btnHold.disabled = true;
   const dice = await rolldice();
 
-  if (hold) {
-    if (dice === 1) {
-      currentPlayer.roundScore = 0;
-      btnRolldice.disabled = false;
-      btnHold.disabled = false;
-    } else {
-      currentPlayer.score = currentPlayer.roundScore + dice;
-      btnRolldice.disabled = false;
-      btnHold.disabled = false;
-      if (currentPlayer.score >= WIN_SCORE) {
-        currentPlayer.win();
-        opposingPlayer.lose();
-        btnRolldice.disabled = true;
-        btnHold.disabled = true;
-      }
-    }
-    exchangePlayer();
-  } else {
-    currentPlayer.roundScore = dice + currentPlayer.roundScore;
+  if (dice === 1) {
+    currentPlayer.roundScore = 0;
     btnRolldice.disabled = false;
     btnHold.disabled = false;
+    exchangePlayer();
+  } else {
+    currentPlayer.roundScore = currentPlayer.roundScore + dice;
+    btnRolldice.disabled = false;
+    btnHold.disabled = false;
+    if (currentPlayer.score + currentPlayer.roundScore >= WIN_SCORE) {
+      btnRolldice.disabled = true;
+      btnHold.disabled = true;
+      currentPlayer.score = currentPlayer.roundScore;
+      currentPlayer.win();
+      opposingPlayer.lose();
+      exchangePlayer();
+    }
   }
 }
 
 function handleBtnHold() {
-  hold = !hold;
-  btnHold.classList.toggle("btn-active");
+  currentPlayer.score = currentPlayer.roundScore;
+  exchangePlayer();
 }
 
 function exchangePlayer() {
@@ -73,8 +67,6 @@ function exchangePlayer() {
   }
   currentPlayer.active();
   opposingPlayer.inactive();
-  hold = false;
-  btnHold.classList.remove("btn-active");
 }
 
 /**

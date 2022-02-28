@@ -148,8 +148,8 @@ body {
   transition-property: color, background-color;
 }
 
-.nav-game > .btn-active {
-  background-color: rgba(var(--primary), 0.3);
+.nav-game > .btn:hover {
+  color: rgba(var(--secondary-dark), 0.7);
 }
 
 .nav-game > .btn:disabled {
