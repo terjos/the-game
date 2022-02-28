@@ -31,15 +31,18 @@ function handlebtnNewGame() {
 
 async function handleBtnRolldice() {
   btnRolldice.disabled = true;
+  btnHold.disabled = true;
   const dice = await rolldice();
 
   if (hold) {
     if (dice === 1) {
       currentPlayer.roundScore = 0;
       btnRolldice.disabled = false;
+      btnHold.disabled = false;
     } else {
       currentPlayer.score = currentPlayer.roundScore + dice;
       btnRolldice.disabled = false;
+      btnHold.disabled = false;
       if (currentPlayer.score >= WIN_SCORE) {
         currentPlayer.win();
         opposingPlayer.lose();
@@ -51,6 +54,7 @@ async function handleBtnRolldice() {
   } else {
     currentPlayer.roundScore = dice + currentPlayer.roundScore;
     btnRolldice.disabled = false;
+    btnHold.disabled = false;
   }
 }
 
