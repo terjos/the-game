@@ -9,7 +9,6 @@ class Player {
 
   init() {
     this._container.classList.remove("player-end-game");
-
     this._state = { score: 0, roundScore: 0 };
     this._roundScore.innerHTML = 0;
     this._score.innerHTML = 0;

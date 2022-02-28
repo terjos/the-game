@@ -7,6 +7,8 @@
   --secondary: 246, 246, 246;
   --secondary-light: 255, 255, 255;
   --secondary-dark: 55, 55, 55;
+  --dice-size: 50px;
+  --dice-dorder: "solid rgba(128, 128, 128, 0.3) 1px";
 }
 
 html {
@@ -34,6 +36,7 @@ body {
   );
 }
 
+/* ------------- Player ---------------- */
 .players {
   position: absolute;
   top: var(--margin-contour);
@@ -117,6 +120,7 @@ body {
   color: rgb(var(--secondary-light));
 }
 
+/* ------------- Nav Game ---------------- */
 .nav-game {
   position: absolute;
   top: var(--margin-contour);
@@ -176,34 +180,135 @@ body {
   margin-top: 22px;
 }
 
-.nav-game .dice {
-  width: 50px;
-  height: 50px;
-  margin-top: 85px;
-  box-shadow: -3px 3px 20px 2px rgba(var(--secondary-dark), 0.4);
-  transition-duration: 0.5s;
-  transition-property: width, height;
-}
-
-.nav-game .dice img {
-  width: 100%;
-  height: 100%;
-}
-
 .nav-game .btn-rolldice {
   margin-top: 50px;
-}
-
-.nav-game .btn-rolldice svg {
-  fill: rgb(var(--primary));
-  stroke: rgb(var(--primary));
 }
 
 .nav-game .btn-hold {
   margin-top: 115px;
 }
 
+/* ------------- Dice ---------------- */
+.nav-game .dice-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--dice-size) * 1.5);
+  height: calc(var(--dice-size) * 1.5);
+  margin-top: 75px;
+  perspective: 1000px;
+  transition-property: width, height;
+}
+
+.nav-game .dice {
+  position: relative;
+  transform-style: preserve-3d;
+  width: var(--dice-size);
+  height: var(--dice-size);
+  transform: rotate3d(1, 1, -1, 45deg);
+}
+
+.nav-game .dice > .face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: solid rgba(128, 128, 128, 0.3) 1px;
+  backface-visibility: inherit;
+}
+
+.nav-game .dice > .font {
+  background-image: url("images/dice-1.png");
+  transform: translateZ(calc(var(--dice-size) / 2));
+}
+
+.nav-game .dice > .back {
+  background-image: url("images/dice-6.png");
+  transform: translateZ(calc(calc(var(--dice-size) / 2) * -1));
+}
+
+.nav-game .dice > .top {
+  background-image: url("images/dice-4.png");
+  transform: rotateX(90deg) translateZ(calc(var(--dice-size) / 2));
+}
+
+.nav-game .dice > .right {
+  background-image: url("images/dice-5.png");
+  transform: rotateY(-90deg) translateZ(calc(var(--dice-size) / 2));
+}
+
+.nav-game .dice > .bottom {
+  background-image: url("images/dice-3.png");
+  transform: rotateX(-90deg) translateZ(calc(var(--dice-size) / 2));
+}
+
+.nav-game .dice > .left {
+  background-image: url("images/dice-2.png");
+  transform: rotateY(-90deg) translateZ(calc(calc(var(--dice-size) / 2) * -1));
+}
+
+.nav-game [class*=" spin-dice"] {
+  animation-duration: 2s;
+  animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  animation-fill-mode: both;
+}
+
+.nav-game .dice-1 {
+  transform: rotate3d(1, 1, -1, 0deg);
+}
+
+.nav-game .dice-2 {
+  transform: rotate3d(1, 1, 1, 240deg);
+}
+
+.nav-game .dice-3 {
+  transform: rotate3d(1, 1, 1, 120deg);
+}
+
+.nav-game .dice-4 {
+  transform: rotate3d(1, 1, -1, 240deg);
+}
+
+.nav-game .dice-5 {
+  transform: rotate3d(1, 1, -1, 120deg);
+}
+
+.nav-game .dice-6 {
+  transform: rotate3d(1, 1, -1, 120deg) rotate3d(1, 1, 1, 120deg);
+}
+
+.nav-game .spin-dice-1 {
+  animation-name: spin-dice-1;
+}
+
+.nav-game .spin-dice-2 {
+  animation-name: spin-dice-2;
+}
+
+.nav-game .spin-dice-3 {
+  animation-name: spin-dice-3;
+}
+
+.nav-game .spin-dice-4 {
+  animation-name: spin-dice-4;
+}
+
+.nav-game .spin-dice-5 {
+  animation-name: spin-dice-5;
+}
+
+.nav-game .spin-dice-6 {
+  animation-name: spin-dice-6;
+}
+
+/* ------------- media queries---------------- */
 @media (min-width: 575px) {
+  :root {
+    --dice-size: 65px;
+  }
+
   html {
     font-size: 14px;
   }
@@ -220,11 +325,6 @@ body {
     margin-top: 95px;
   }
 
-  .nav-game .dice {
-    width: 65px;
-    height: 65px;
-  }
-
   .nav-game .btn-rolldice {
     margin-top: 75px;
   }
@@ -235,6 +335,10 @@ body {
 }
 
 @media (min-width: 767px) {
+  :root {
+    --dice-size: 85px;
+  }
+
   html {
     font-size: 16px;
   }
@@ -249,20 +353,69 @@ body {
   .nav-game {
     width: 350px;
   }
-
-  .nav-game .dice {
-    width: 85px;
-    height: 85px;
-  }
 }
 
 @media (min-width: 991px) {
+  :root {
+    --dice-size: 100px;
+  }
+
   html {
     font-size: 20px;
   }
+}
 
-  .nav-game .dice {
-    width: 100px;
-    height: 100px;
+/* ------------- animation---------------- */
+@keyframes spin-dice-1 {
+  from {
+    transform: rotate3d(1, 1, -1, 1000deg);
+  }
+  to {
+    transform: rotate3d(1, 1, -1, 0deg);
+  }
+}
+
+@keyframes spin-dice-2 {
+  from {
+    transform: rotate3d(1, 1, 1, 1240deg);
+  }
+  to {
+    transform: rotate3d(1, 1, 1, 240deg);
+  }
+}
+
+@keyframes spin-dice-3 {
+  0% {
+    transform: rotate3d(1, 1, 1, 1120deg);
+  }
+  100% {
+    transform: rotate3d(1, 1, 1, 120deg);
+  }
+}
+
+@keyframes spin-dice-4 {
+  from {
+    transform: rotate3d(1, 1, -1, 1240deg);
+  }
+  to {
+    transform: rotate3d(1, 1, -1, 240deg);
+  }
+}
+
+@keyframes spin-dice-5 {
+  from {
+    transform: rotate3d(1, 1, -1, 1120deg);
+  }
+  to {
+    transform: rotate3d(1, 1, -1, 120deg);
+  }
+}
+
+@keyframes spin-dice-6 {
+  from {
+    transform: rotate3d(1, 1, -1, 1120deg) rotate3d(1, 1, 1, 122deg);
+  }
+  to {
+    transform: rotate3d(1, 1, -1, 120deg) rotate3d(1, 1, 1, 120deg);
   }
 }
