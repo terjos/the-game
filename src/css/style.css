@@ -220,32 +220,32 @@ body {
 }
 
 .nav-game .dice > .font {
-  background-image: url("images/dice-1.png");
+  background-image: url("/images/dice-1.png");
   transform: translateZ(calc(var(--dice-size) / 2));
 }
 
 .nav-game .dice > .back {
-  background-image: url("images/dice-6.png");
+  background-image: url("/images/dice-6.png");
   transform: translateZ(calc(calc(var(--dice-size) / 2) * -1));
 }
 
 .nav-game .dice > .top {
-  background-image: url("images/dice-4.png");
+  background-image: url("/images/dice-4.png");
   transform: rotateX(90deg) translateZ(calc(var(--dice-size) / 2));
 }
 
 .nav-game .dice > .right {
-  background-image: url("images/dice-5.png");
+  background-image: url("/images/dice-5.png");
   transform: rotateY(-90deg) translateZ(calc(var(--dice-size) / 2));
 }
 
 .nav-game .dice > .bottom {
-  background-image: url("images/dice-3.png");
+  background-image: url("/images/dice-3.png");
   transform: rotateX(-90deg) translateZ(calc(var(--dice-size) / 2));
 }
 
 .nav-game .dice > .left {
-  background-image: url("images/dice-2.png");
+  background-image: url("/images/dice-2.png");
   transform: rotateY(-90deg) translateZ(calc(calc(var(--dice-size) / 2) * -1));
 }
 
