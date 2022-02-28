@@ -1,7 +1,7 @@
 import "./css/style.css";
 import Player from "./js/player";
 
-const WIN_SCORE = 10;
+const WIN_SCORE = 100;
 
 const btnNewGame = document.getElementById("btnNewGame");
 const btnRolldice = document.getElementById("btnRolldice");
